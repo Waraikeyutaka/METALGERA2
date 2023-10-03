@@ -47,7 +47,7 @@ window.addEventListener(
     if (handled) {
       // イベントが処理された場合、"ダブルアクション" を抑制する
       event.preventDefault();
-      console.log("aaaa")
+      console.log("movement")
       if(event.keyCode == 37) {
         cvs.fillStyle = "white";
         cvs.fillRect(0, 0, 1200,1200)
@@ -57,9 +57,15 @@ window.addEventListener(
         cvs.drawImage(chara, 170, 80,50,50);
         draw(100,100); 
         draw(300,100);
-      
-        
       }
+
+
+
+
+
+
+
+      
       if(event.keyCode == 39) {
         cvs.fillStyle = "white";
         cvs.fillRect(0, 0, 1200,1200)
@@ -69,14 +75,15 @@ window.addEventListener(
         cvs.drawImage(chara, 170, 80,50,50);
         draw(100,100); 
         draw(300,100);
-      
-        
       }
-
     }
   },
   true,
 );
+  
+
+
+
 
   /* rectangle */
   cvs.beginPath(); /* 図形を描き始めることを宣言 */
