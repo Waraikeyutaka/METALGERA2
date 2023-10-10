@@ -95,3 +95,4 @@ window.addEventListener(
   cvs.stroke(); /* 描いた図形を線で表示させる */
 }
 
+aaaaa
