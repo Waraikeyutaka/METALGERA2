@@ -59,6 +59,7 @@ window.addEventListener(
         draw(300,100);
       }
 
+
       const character = document.getElementById("character") as HTMLElement;
       let characterX: number = 0;
       let characterY: number = 0;
@@ -67,11 +68,15 @@ window.addEventListener(
       document.addEventListener("keydown", (event: KeyboardEvent) => {
         if (event.key === "ArrowRight") {
           characterX += characterSpeed;
-          updateCharacterPosition();
+        } else if (event.key === "ArrowLeft") {
+          characterX -= characterSpeed;
         } else if (event.key === "ArrowUp") {
           characterY -= characterSpeed;
-          updateCharacterPosition();
+        } else if (event.key === "ArrowDown") {
+          characterY += characterSpeed;
         }
+      
+        updateCharacterPosition();
       });
       
       function updateCharacterPosition() {
@@ -86,6 +91,12 @@ window.addEventListener(
       
       // ゲームループを開始
       gameLoop();
+
+
+
+
+      
+
       
       if(event.keyCode == 39) {
         cvs.fillStyle = "white";

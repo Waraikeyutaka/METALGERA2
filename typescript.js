@@ -66,12 +66,17 @@ function draw(x, y) {
             document.addEventListener("keydown", function (event) {
                 if (event.key === "ArrowRight") {
                     characterX_1 += characterSpeed_1;
-                    updateCharacterPosition();
+                }
+                else if (event.key === "ArrowLeft") {
+                    characterX_1 -= characterSpeed_1;
                 }
                 else if (event.key === "ArrowUp") {
                     characterY_1 -= characterSpeed_1;
-                    updateCharacterPosition();
                 }
+                else if (event.key === "ArrowDown") {
+                    characterY_1 += characterSpeed_1;
+                }
+                updateCharacterPosition();
             });
             function updateCharacterPosition() {
                 character_1.style.transform = "translate(".concat(characterX_1, "px, ").concat(characterY_1, "px)");
