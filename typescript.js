@@ -71,61 +71,6 @@ function draw(x, y) {
             }
         }
     }, true);
-    var CHARACTER_RADIUS = 20;
-    var TRAIL_LENGTH = 10;
-    var character = {
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        speed: 5,
-    };
-    var trail = [];
-    function clearCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    function drawCharacter() {
-        ctx.fillStyle = "red";
-        ctx.beginPath();
-        ctx.arc(character.x, character.y, CHARACTER_RADIUS, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    function drawTrail() {
-        for (var i = 0; i < trail.length; i++) {
-            var alpha = i / TRAIL_LENGTH;
-            ctx.fillStyle = "rgba(255, 0, 0, ".concat(1 - alpha, ")");
-            ctx.beginPath();
-            ctx.arc(trail[i].x, trail[i].y, CHARACTER_RADIUS, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-    function update() {
-        // キャラクターの移動
-        if (keys["ArrowLeft"])
-            character.x -= character.speed;
-        if (keys["ArrowRight"])
-            character.x += character.speed;
-        if (keys["ArrowUp"])
-            character.y -= character.speed;
-        if (keys["ArrowDown"])
-            character.y += character.speed;
-        // 残像を追加
-        trail.push({ x: character.x, y: character.y });
-        // 残像の数を制限
-        if (trail.length > TRAIL_LENGTH)
-            trail.shift();
-        // 画面をクリアして描画
-        clearCanvas();
-        drawTrail();
-        drawCharacter();
-        requestAnimationFrame(update);
-    }
-    var keys = {};
-    window.addEventListener("keydown", function (event) {
-        keys[event.key] = true;
-    });
-    window.addEventListener("keyup", function (event) {
-        keys[event.key] = false;
-    });
-    update();
     /* rectangle */
     cvs.beginPath(); /* 図形を描き始めることを宣言 */
     cvs.moveTo(50 + x, 50 + y); /* 図形の描き始めを移動 */
