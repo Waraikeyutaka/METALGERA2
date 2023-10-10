@@ -83,6 +83,48 @@ window.addEventListener(
   
 
 
+// キーボードの状態を追跡する変数
+let keyPressed: Record<number, boolean> = {};
+
+// キーボードイベントを監視
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+  keyPressed[event.keyCode] = true;
+});
+
+document.addEventListener('keyup', (event: KeyboardEvent) => {
+  keyPressed[event.keyCode] = false;
+});
+
+// ゲームループまたはアニメーションフレームでゲームロジックを実行
+function gameLoop() {
+  if (keyPressed[RIGHT_KEY]) {
+    // 右方向に移動
+    characterX += characterSpeed;
+  }
+
+  if (keyPressed[UP_KEY]) {
+    // 上方向に移動
+    characterY -= characterSpeed;
+  }
+
+  if (keyPressed[LEFT_KEY]) {
+    // 左方向に移動
+    characterX -= characterSpeed;
+  }
+
+  if (keyPressed[DOWN_KEY]) {
+    // 下方向に移動
+    characterY += characterSpeed;
+  }
+
+  // キャラクターの位置を更新
+  // ここで実際の描画などの処理を行う
+
+  requestAnimationFrame(gameLoop); // ゲームループを再起動
+}
+
+// ゲームループを開始
+gameLoop();
 
 
   /* rectangle */
@@ -94,5 +136,3 @@ window.addEventListener(
   cvs.closePath(); /* 描いた線を閉じる */
   cvs.stroke(); /* 描いた図形を線で表示させる */
 }
-
-aaaaa
