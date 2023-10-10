@@ -59,12 +59,33 @@ window.addEventListener(
         draw(300,100);
       }
 
-
-
-
-
-
-
+      const character = document.getElementById("character") as HTMLElement;
+      let characterX: number = 0;
+      let characterY: number = 0;
+      let characterSpeed: number = 5;
+      
+      document.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.key === "ArrowRight") {
+          characterX += characterSpeed;
+          updateCharacterPosition();
+        } else if (event.key === "ArrowUp") {
+          characterY -= characterSpeed;
+          updateCharacterPosition();
+        }
+      });
+      
+      function updateCharacterPosition() {
+        character.style.transform = `translate(${characterX}px, ${characterY}px)`;
+      }
+      
+      // ゲームループまたはアニメーションフレームを使用してゲームロジックを実行
+      function gameLoop() {
+        // ここでゲームの更新処理を追加
+        requestAnimationFrame(gameLoop);
+      }
+      
+      // ゲームループを開始
+      gameLoop();
       
       if(event.keyCode == 39) {
         cvs.fillStyle = "white";
@@ -81,51 +102,6 @@ window.addEventListener(
   true,
 );
   
-
-
-// キーボードの状態を追跡する変数
-let keyPressed: Record<number, boolean> = {};
-
-// キーボードイベントを監視
-document.addEventListener('keydown', (event: KeyboardEvent) => {
-  keyPressed[event.keyCode] = true;
-});
-
-document.addEventListener('keyup', (event: KeyboardEvent) => {
-  keyPressed[event.keyCode] = false;
-});
-
-// ゲームループまたはアニメーションフレームでゲームロジックを実行
-function gameLoop() {
-  if (keyPressed[RIGHT_KEY]) {
-    // 右方向に移動
-    characterX += characterSpeed;
-  }
-
-  if (keyPressed[UP_KEY]) {
-    // 上方向に移動
-    characterY -= characterSpeed;
-  }
-
-  if (keyPressed[LEFT_KEY]) {
-    // 左方向に移動
-    characterX -= characterSpeed;
-  }
-
-  if (keyPressed[DOWN_KEY]) {
-    // 下方向に移動
-    characterY += characterSpeed;
-  }
-
-  // キャラクターの位置を更新
-  // ここで実際の描画などの処理を行う
-
-  requestAnimationFrame(gameLoop); // ゲームループを再起動
-}
-
-// ゲームループを開始
-gameLoop();
-
 
   /* rectangle */
   cvs.beginPath(); /* 図形を描き始めることを宣言 */

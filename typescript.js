@@ -59,6 +59,30 @@ function draw(x, y) {
                 draw(100, 100);
                 draw(300, 100);
             }
+            var character_1 = document.getElementById("character");
+            var characterX_1 = 0;
+            var characterY_1 = 0;
+            var characterSpeed_1 = 5;
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "ArrowRight") {
+                    characterX_1 += characterSpeed_1;
+                    updateCharacterPosition();
+                }
+                else if (event.key === "ArrowUp") {
+                    characterY_1 -= characterSpeed_1;
+                    updateCharacterPosition();
+                }
+            });
+            function updateCharacterPosition() {
+                character_1.style.transform = "translate(".concat(characterX_1, "px, ").concat(characterY_1, "px)");
+            }
+            // ゲームループまたはアニメーションフレームを使用してゲームロジックを実行
+            function gameLoop() {
+                // ここでゲームの更新処理を追加
+                requestAnimationFrame(gameLoop);
+            }
+            // ゲームループを開始
+            gameLoop();
             if (event.keyCode == 39) {
                 cvs.fillStyle = "white";
                 cvs.fillRect(0, 0, 1200, 1200);
