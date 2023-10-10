@@ -25,7 +25,7 @@ chara1.onload = () => {
 chara.src = "./棒人間素材.png";  // 画像のURLを指定
 chara.onload = () => {
   if(cvs==null){return}
-  cvs.drawImage(chara, 370, 270,50,50);
+//  cvs.drawImage(chara, 370, 270,50,50);
 };
 
 window.addEventListener(
