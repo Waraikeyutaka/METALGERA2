@@ -3,7 +3,7 @@ onload = function () {
     draw(300, 100);
 };
 var cvs;
-var xx = 370;
+var xx = 370, yy = 270;
 function draw(x, y) {
     var canvas = document.getElementById('rectangle');
     if (!canvas || !canvas.getContext) {
@@ -55,6 +55,16 @@ function draw(x, y) {
                 xx -= 10;
                 console.log("left");
                 cvs.drawImage(chara, xx, 270, 50, 50);
+                cvs.drawImage(chara, 170, 80, 50, 50);
+                draw(100, 100);
+                draw(300, 100);
+            }
+            if (event.keyCode == 38) {
+                cvs.fillStyle = "white";
+                cvs.fillRect(0, 0, 1200, 1200);
+                yy -= 10;
+                console.log("UP");
+                cvs.drawImage(chara, xx, yy, 50, 50);
                 cvs.drawImage(chara, 170, 80, 50, 50);
                 draw(100, 100);
                 draw(300, 100);

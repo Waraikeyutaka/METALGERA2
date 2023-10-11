@@ -3,7 +3,7 @@ onload = function() {
   draw(300,100);
 };
 var cvs
-var xx=370
+var xx=370 ,yy=270
 function draw(x:number,y:number) {
   var canvas:HTMLCanvasElement = document.getElementById('rectangle') as HTMLCanvasElement;
   if ( ! canvas || ! canvas.getContext ) {
@@ -59,6 +59,19 @@ window.addEventListener(
         draw(300,100);
       }
 
+      if(event.keyCode == 38) {
+        cvs.fillStyle = "white";
+        cvs.fillRect(0, 0, 1200,1200)
+       yy-=10 
+        console.log("UP")
+        cvs.drawImage(chara, xx, yy,50,50);
+        cvs.drawImage(chara, 170, 80,50,50);
+        draw(100,100); 
+        draw(300,100);
+      }
+
+
+
 
       const character = document.getElementById("character") as HTMLElement;
       let characterX: number = 0;
@@ -72,6 +85,7 @@ window.addEventListener(
           characterX -= characterSpeed;
         } else if (event.key === "ArrowUp") {
           characterY -= characterSpeed;
+          
         } else if (event.key === "ArrowDown") {
           characterY += characterSpeed;
         }
