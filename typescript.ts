@@ -70,7 +70,26 @@ window.addEventListener(
         draw(300,100);
       }
 
+      <audio id="myAudio">
+      <source src="your-sound-file.mp3" type="audio/mpeg">
+    </audio>
 
+    const audioElement = document.getElementById("myAudio") as HTMLAudioElement;
+
+function playSound() {
+  if (audioElement.paused) {
+    audioElement.play();
+  } else {
+    audioElement.currentTime = 0;
+  }
+}
+
+// 特定の場所で音を鳴らすトリガー例（クリック時）
+const triggerElement = document.getElementById("triggerElement");
+
+if (triggerElement) {
+  triggerElement.addEventListener("click", playSound);
+}
 
 
       const character = document.getElementById("character") as HTMLElement;
