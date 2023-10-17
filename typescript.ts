@@ -70,10 +70,7 @@ window.addEventListener(
         draw(300,100);
       }
 
-      <audio id="myAudio">
-      <source src="your-sound-file.mp3" type="audio/mpeg">
-    </audio>
-
+    
     const audioElement = document.getElementById("myAudio") as HTMLAudioElement;
 
 function playSound() {
