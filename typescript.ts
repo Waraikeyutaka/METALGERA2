@@ -71,61 +71,34 @@ window.addEventListener(
       }
 
     
-    const audioElement = document.getElementById("myAudio") as HTMLAudioElement;
-
-function playSound() {
-  if (audioElement.paused) {
-    audioElement.play();
-  } else {
-    audioElement.currentTime = 0;
-  }
-}
-
-// 特定の場所で音を鳴らすトリガー例（クリック時）
-const triggerElement = document.getElementById("triggerElement");
-
-if (triggerElement) {
-  triggerElement.addEventListener("click", playSound);
-}
 
 
-      const character = document.getElementById("character") as HTMLElement;
-      let characterX: number = 0;
-      let characterY: number = 0;
-      let characterSpeed: number = 5;
+      function playSoundEffect(soundPath: string) {
+        const audio = new Audio(soundPath);
+        audio.play();
+      }
+
+      // 効果音ファイルのパス
+      const soundFilePath1 = "sound1.wav";
+      const soundFilePath2 = "sound2.wav";
       
-      document.addEventListener("keydown", (event: KeyboardEvent) => {
-        if (event.key === "ArrowRight") {
-          characterX += characterSpeed;
-        } else if (event.key === "ArrowLeft") {
-          characterX -= characterSpeed;
-        } else if (event.key === "ArrowUp") {
-          characterY -= characterSpeed;
-          
-        } else if (event.key === "ArrowDown") {
-          characterY += characterSpeed;
-        }
+      // 特定の場所で効果音を再生
+      function playSoundsAtSpecificLocation() {
+        // ここに効果音1の再生タイミングを設定
+        setTimeout(() => {
+          playSoundEffect(soundFilePath1);
+        }, 2000); // 2秒後に再生
       
-        updateCharacterPosition();
-      });
-      
-      function updateCharacterPosition() {
-        character.style.transform = `translate(${characterX}px, ${characterY}px)`;
+        // ここに効果音2の再生タイミングを設定
+        setTimeout(() => {
+          playSoundEffect(soundFilePath2);
+        }, 5000); // 5秒後に再生
       }
       
-      // ゲームループまたはアニメーションフレームを使用してゲームロジックを実行
-      function gameLoop() {
-        // ここでゲームの更新処理を追加
-        requestAnimationFrame(gameLoop);
-      }
-      
-      // ゲームループを開始
-      gameLoop();
+      // 特定の場所で効果音再生関数を呼び出す
+      playSoundsAtSpecificLocation(); 
 
 
-
-
-      
 
       
       if(event.keyCode == 39) {
