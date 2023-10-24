@@ -70,36 +70,47 @@ window.addEventListener(
         draw(300,100);
       }
 
-    
-
-
-      function playSoundEffect(soundPath: string) {
-        const audio = new Audio(soundPath);
-        audio.play();
+      if(event.keyCode == 40) {
+        cvs.fillStyle = "white";
+        cvs.fillRect(0, 0, 1200,1200)
+       yy+=10 
+        console.log("down")
+        cvs.drawImage(chara, xx, yy,50,50);
+        cvs.drawImage(chara, 170, 80,50,50);
+        draw(100,100); 
+        draw(300,100);
       }
 
-      // 効果音ファイルのパス
-      const soundFilePath1 = "sound1.wav";
-      const soundFilePath2 = "sound2.wav";
-      
-      // 特定の場所で効果音を再生
-      function playSoundsAtSpecificLocation() {
-        // ここに効果音1の再生タイミングを設定
-        setTimeout(() => {
-          playSoundEffect(soundFilePath1);
-        }, 2000); // 2秒後に再生
-      
-        // ここに効果音2の再生タイミングを設定
-        setTimeout(() => {
-          playSoundEffect(soundFilePath2);
-        }, 5000); // 5秒後に再生
-      }
-      
-      // 特定の場所で効果音再生関数を呼び出す
-      playSoundsAtSpecificLocation(); 
+
+// 効果音のファイルパス
+const soundEffectFile: string = 'sound_effect.mp3';
+
+// 音声再生用の要素を取得
+const soundElement: HTMLAudioElement | null = document.getElementById('sound') as HTMLAudioElement | null;
+
+// 音声再生をトリガーする領域の要素を取得
+const soundTriggerArea: HTMLElement | null = document.getElementById('soundTriggerArea');
+
+// 音声再生関数
+function playSound() {
+    if (soundElement) {
+        soundElement.play().catch((error: Error) => {
+            console.error("音声再生中にエラーが発生しました:", error);
+        });
+    }
+}
+
+// 特定の場所がクリックされたときに音声再生関数を呼び出す
+if (soundTriggerArea) {
+    soundTriggerArea.addEventListener('click', playSound);
+}
 
 
 
+
+
+
+      
       
       if(event.keyCode == 39) {
         cvs.fillStyle = "white";

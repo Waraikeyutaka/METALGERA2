@@ -69,35 +69,16 @@ function draw(x, y) {
                 draw(100, 100);
                 draw(300, 100);
             }
-            var character_1 = document.getElementById("character");
-            var characterX_1 = 0;
-            var characterY_1 = 0;
-            var characterSpeed_1 = 5;
-            document.addEventListener("keydown", function (event) {
-                if (event.key === "ArrowRight") {
-                    characterX_1 += characterSpeed_1;
-                }
-                else if (event.key === "ArrowLeft") {
-                    characterX_1 -= characterSpeed_1;
-                }
-                else if (event.key === "ArrowUp") {
-                    characterY_1 -= characterSpeed_1;
-                }
-                else if (event.key === "ArrowDown") {
-                    characterY_1 += characterSpeed_1;
-                }
-                updateCharacterPosition();
-            });
-            function updateCharacterPosition() {
-                character_1.style.transform = "translate(".concat(characterX_1, "px, ").concat(characterY_1, "px)");
+            if (event.keyCode == 40) {
+                cvs.fillStyle = "white";
+                cvs.fillRect(0, 0, 1200, 1200);
+                yy += 10;
+                console.log("down");
+                cvs.drawImage(chara, xx, yy, 50, 50);
+                cvs.drawImage(chara, 170, 80, 50, 50);
+                draw(100, 100);
+                draw(300, 100);
             }
-            // ゲームループまたはアニメーションフレームを使用してゲームロジックを実行
-            function gameLoop() {
-                // ここでゲームの更新処理を追加
-                requestAnimationFrame(gameLoop);
-            }
-            // ゲームループを開始
-            gameLoop();
             if (event.keyCode == 39) {
                 cvs.fillStyle = "white";
                 cvs.fillRect(0, 0, 1200, 1200);
