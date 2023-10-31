@@ -1,15 +1,17 @@
-onload = function() { 
+window.onload = function() { 
   draw(100,100); 
   draw(300,100);
 };
 var cvs
 var xx=370 ,yy=270
 function draw(x:number,y:number) {
-  var canvas:HTMLCanvasElement = document.getElementById('rectangle') as HTMLCanvasElement;
+  const canvas = document.getElementById('myCanvas') as HTMLCanvasElement;
+  // let canvas:HTMLCanvasElement = document.getElementById('rectangle') as HTMLCanvasElement;
   if ( ! canvas || ! canvas.getContext ) {
     return false;
   }
   cvs = canvas.getContext('2d');
+
 
   if(cvs==null){return}
   const chara1 = new Image();
@@ -18,6 +20,41 @@ chara1.onload = () => {
   if(cvs==null){return}
   cvs.drawImage(chara, 170, 80,50,50);
 };
+
+
+
+// オーディオ要素とキャンバスを取得
+const audioElement = document.getElementById('audio') as HTMLAudioElement;
+
+if (audioElement && canvas) {
+
+
+
+
+    // キャンバス内でのクリックをリッスン
+    // canvas.addEventListener('click', (event: MouseEvent) => {
+    //     const x = event.clientX - canvas.getBoundingClientRect().left;
+    //     const y = event.clientY - canvas.getBoundingClientRect().top;
+
+    //     console.log(y)
+    //     // 特定の座標で音を再生
+    //     if ( y > 200) {
+    //         audioElement.play()
+    //             .then(() => {
+    //                 console.log('音が再生されました');
+    //             })
+    //             .catch(error => {
+    //                 console.error('音の再生中にエラーが発生しました', error);
+    //             });
+    //     }
+    // });
+
+    // オーディオが読み込まれない場合のエラーハンドリング
+    audioElement.addEventListener('error', () => {
+        console.error('オーディオの読み込み中にエラーが発生しました');
+    })
+  }
+
 
 
   if(cvs==null){return}
@@ -44,6 +81,8 @@ window.addEventListener(
       handled = true;
     }
 
+
+
     if (handled) {
       // イベントが処理された場合、"ダブルアクション" を抑制する
       event.preventDefault();
@@ -52,6 +91,7 @@ window.addEventListener(
         cvs.fillStyle = "white";
         cvs.fillRect(0, 0, 1200,1200)
        xx-=10
+       let playerPositionX = xx
         console.log("left")
         cvs.drawImage(chara, xx, 270,50,50);
         cvs.drawImage(chara, 170, 80,50,50);
@@ -81,36 +121,6 @@ window.addEventListener(
         draw(300,100);
       }
 
-
-// 効果音のファイルパス
-const soundEffectFile: string = 'sound_effect.mp3';
-
-// 音声再生用の要素を取得
-const soundElement: HTMLAudioElement | null = document.getElementById('sound') as HTMLAudioElement | null;
-
-// 音声再生をトリガーする領域の要素を取得
-const soundTriggerArea: HTMLElement | null = document.getElementById('soundTriggerArea');
-
-// 音声再生関数
-function playSound() {
-    if (soundElement) {
-        soundElement.play().catch((error: Error) => {
-            console.error("音声再生中にエラーが発生しました:", error);
-        });
-    }
-}
-
-// 特定の場所がクリックされたときに音声再生関数を呼び出す
-if (soundTriggerArea) {
-    soundTriggerArea.addEventListener('click', playSound);
-}
-
-
-
-
-
-
-      
       
       if(event.keyCode == 39) {
         cvs.fillStyle = "white";
@@ -122,6 +132,26 @@ if (soundTriggerArea) {
         draw(100,100); 
         draw(300,100);
       }
+
+      console.log(yy)
+      // 特定の座標で音を再生
+      if ( yy < 200) {
+        if (audioElement && canvas) {
+
+          audioElement.addEventListener('error', () => {
+            console.error('オーディオの読み込み中にエラーが発生しました');
+        })
+
+          audioElement.play()
+              .then(() => {
+                  console.log('音が再生されました');
+              })
+              .catch(error => {
+                  console.error('音の再生中にエラーが発生しました', error);
+              });
+      
+            }
+          }
     }
   },
   true,
