@@ -142,3 +142,35 @@ function draw(x, y) {
     cvs.closePath(); /* 描いた線を閉じる */
     cvs.stroke(); /* 描いた図形を線で表示させる */
 }
+var Character = /** @class */ (function () {
+    function Character(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    Character.prototype.move = function (dx, dy, walls) {
+        var new_x = this.x + dx;
+        var new_y = this.y + dy;
+        // 壁に当たるかどうかの判定
+        if (!this.isWallCollision(new_x, new_y, walls)) {
+            this.x = new_x;
+            this.y = new_y;
+            console.log("移動成功");
+        }
+        else {
+            console.log("壁に当たりました");
+        }
+    };
+    Character.prototype.isWallCollision = function (x, y, walls) {
+        return walls.some(function (wall) { return wall.x === x && wall.y === y; });
+    };
+    return Character;
+}());
+// キャラクターの初期位置
+var character = new Character(0, 0);
+// 壁の位置
+var walls = [{ x: 1, y: 0 }, { x: 2, y: 2 }];
+// 移動テスト
+character.move(1, 0, walls); // 移動成功
+character.move(1, 0, walls); // 壁に当たりました
+character.move(0, 1, walls); // 移動成功
+character.move(1, 1, walls); // 壁に当たりました

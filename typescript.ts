@@ -167,3 +167,37 @@ window.addEventListener(
   cvs.closePath(); /* 描いた線を閉じる */
   cvs.stroke(); /* 描いた図形を線で表示させる */
 }
+
+class Character {
+  constructor(public x: number, public y: number) {}
+
+  move(dx: number, dy: number, walls: { x: number; y: number }[]): void {
+    const new_x = this.x + dx;
+    const new_y = this.y + dy;
+
+    // 壁に当たるかどうかの判定
+    if (!this.isWallCollision(new_x, new_y, walls)) {
+      this.x = new_x;
+      this.y = new_y;
+      console.log("移動成功");
+    } else {
+      console.log("壁に当たりました");
+    }
+  }
+
+  private isWallCollision(x: number, y: number, walls: { x: number; y: number }[]): boolean {
+    return walls.some(wall => wall.x === x && wall.y === y);
+  }
+}
+
+// キャラクターの初期位置
+const character = new Character(0, 0);
+
+// 壁の位置
+const walls = [{ x: 1, y: 0 }, { x: 2, y: 2 }];
+
+// 移動テスト
+character.move(1, 0, walls); // 移動成功
+character.move(1, 0, walls); // 壁に当たりました
+character.move(0, 1, walls); // 移動成功
+character.move(1, 1, walls); // 壁に当たりました
