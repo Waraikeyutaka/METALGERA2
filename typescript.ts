@@ -15,12 +15,87 @@ function draw(x:number,y:number) {
 
   if(cvs==null){return}
   const chara1 = new Image();
-chara1.src = "./棒人間素材.png";  // 画像のURLを指定
+chara1.src = "./敵兵.jpg";  // 画像のURLを指定
 chara1.onload = () => {
   if(cvs==null){return}
-  cvs.drawImage(chara, 170, 80,50,50);
+  cvs.drawImage(chara1, 170, 80,50,50);
 };
 
+
+
+class Character1 {
+  private x: number;
+  private y: number;
+  private speed: number;
+
+  constructor(x: number, y: number, speed: number) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+  }
+
+  public moveLeft(): void {
+    this.x -= this.speed;
+  }
+
+  public moveRight(): void {
+    this.x += this.speed;
+  }
+
+  public moveUp(): void {
+    this.y -= this.speed;
+  }
+
+  public moveDown(): void {
+    this.y += this.speed;
+  }
+
+  public draw(context: CanvasRenderingContext2D): void {
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    context.fillStyle = '#00F';
+    context.fillRect(this.x, this.y, 50, 50); // キャラクターのサイズは50x50と仮定
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
+  const context = canvas.getContext('2d');
+
+  if (!context) {
+    console.error('Unable to get 2D rendering context.');
+    return;
+  }
+
+  const character = new Character1(100, 100, 5);
+
+  function update() {
+    character.draw(context);
+  }
+
+  function gameLoop() {
+    update();
+    requestAnimationFrame(gameLoop);
+  }
+
+  document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+      case 'ArrowLeft':
+        character.moveLeft();
+        break;
+      case 'ArrowRight':
+        character.moveRight();
+        break;
+      case 'ArrowUp':
+        character.moveUp();
+        break;
+      case 'ArrowDown':
+        character.moveDown();
+        break;
+    }
+  });
+
+  gameLoop();
+});
 
 
 // オーディオ要素とキャンバスを取得
@@ -191,13 +266,15 @@ class Character {
 }
 
 // キャラクターの初期位置
-const character = new Character(0, 0);
+const character = new Character(100, 300);
 
 // 壁の位置
 const walls = [{ x: 1, y: 0 }, { x: 2, y: 2 }];
 
 // 移動テスト
-character.move(1, 0, walls); // 移動成功
-character.move(1, 0, walls); // 壁に当たりました
-character.move(0, 1, walls); // 移動成功
-character.move(1, 1, walls); // 壁に当たりました
+character.move(100,200, walls); // 移動成功
+character.move(100, 200, walls); // 壁に当たりました
+
+
+character.move(200, 400, walls); // 移動成功
+character.move(200, 400, walls); // 壁に当たりました

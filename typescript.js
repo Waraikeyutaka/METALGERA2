@@ -15,12 +15,12 @@ function draw(x, y) {
         return;
     }
     var chara1 = new Image();
-    chara1.src = "./棒人間素材.png"; // 画像のURLを指定
+    chara1.src = "./敵兵.jpg"; // 画像のURLを指定
     chara1.onload = function () {
         if (cvs == null) {
             return;
         }
-        cvs.drawImage(chara, 170, 80, 50, 50);
+        cvs.drawImage(chara1, 170, 80, 50, 50);
     };
     // オーディオ要素とキャンバスを取得
     var audioElement = document.getElementById('audio');
@@ -166,11 +166,11 @@ var Character = /** @class */ (function () {
     return Character;
 }());
 // キャラクターの初期位置
-var character = new Character(0, 0);
+var character = new Character(100, 300);
 // 壁の位置
 var walls = [{ x: 1, y: 0 }, { x: 2, y: 2 }];
 // 移動テスト
-character.move(1, 0, walls); // 移動成功
-character.move(1, 0, walls); // 壁に当たりました
-character.move(0, 1, walls); // 移動成功
-character.move(1, 1, walls); // 壁に当たりました
+character.move(100, 200, walls); // 移動成功
+character.move(100, 200, walls); // 壁に当たりました
+character.move(200, 400, walls); // 移動成功
+character.move(200, 400, walls); // 壁に当たりました
